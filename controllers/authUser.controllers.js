@@ -40,7 +40,7 @@ export const renderLoginPage = (req, res) => {
 export const handleLogin = async (req, res) => {
   const { email, password } = req.body;
 
-  const loginUser = await userModel.findOne({ email });
+  const loginUser = await userModel.findOne({ email });``
 
   if (!loginUser || !(await bcrypt.compare(password, loginUser.password))) {
     req.flash("error", "Invalid Email or Password !!");
