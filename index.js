@@ -33,6 +33,10 @@ app.use("/", homeRouters);
 app.use("/auth", authRouters);
 app.use("/notes", notesRouters);
 
+app.use((req, res, next) => {
+  res.status(404).render("errorPage", { errorMsg: "Page not found !" });
+});
+
 app.listen(process.env.PORT, "0.0.0.0", () =>
   console.log("Server is running at PORT:", process.env.PORT)
 );
