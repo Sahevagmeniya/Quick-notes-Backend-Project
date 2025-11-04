@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-zinc-950 text-white flex flex-col h-screen">
+    <!-- Navbar -->
+    <nav
+      class="h-16 flex justify-between items-center px-10 border-b border-gray-800 bg-zinc-900/60"
+    >
+      <a class="text-2xl font-bold cursor-pointer" href="/">📝 NotesApp</a>
+      <div class="flex gap-4">
+        <a
+          href="<%= tokenData?'/notes/addNotes':'/auth/login' %>"
+          class="border border-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition-all"
+          ><%= tokenData? tokenData.email : "Login" %></a
+        >
+        <% if (!tokenData) { %>
+        <a
+          href="/auth/signup"
+          class="border border-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition-all"
+          >Sign Up</a
+        >
+        <% } %>
+      </div>
+    </nav>
+
+    <main
+      class="flex-1 flex flex-col items-center justify-center text-center px-6"
+    >
+      <h2 class="text-4xl font-bold mb-4">Welcome to Your Notes App</h2>
+      <p class="text-gray-300 max-w-xl mb-8">
+        Create, organize, and manage your personal notes easily. Stay productive
+        and never lose an idea again!
+      </p>
+      <a
+        href="/notes/addNotes"
+        class="bg-blue-700 hover:bg-blue-900 text-white font-semibold px-6 py-3 rounded-lg transition-all"
+        >Get Started</a
+      >
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="h-14 flex items-center justify-center border-t border-gray-800 text-gray-400 text-sm"
+    >
+      © <%= new Date().getFullYear() %> NotesApp. All rights reserved.
+    </footer>
+  </body>
+</html>

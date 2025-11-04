@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Note | Notes App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-zinc-950 text-white flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <nav
+      class="h-16 flex justify-between items-center px-10 border-b border-gray-800 bg-zinc-900/60 backdrop-blur-sm"
+    >
+      <a class="text-2xl font-bold cursor-pointer" href="/">📝 NotesApp</a>
+
+      <div class="flex gap-4">
+        <a
+          href="/notes/allNotes"
+          class="border border-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition"
+          >All Notes</a
+        >
+        <a
+          href="/auth/logout"
+          class="border border-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition"
+          >Logout</a
+        >
+      </div>
+    </nav>
+
+    <!-- Add Note Form -->
+    <main class="flex-1 flex justify-center items-center px-4 sm:px-0">
+      <div
+        class="bg-zinc-900 border border-gray-700 rounded-2xl shadow-lg p-8 w-full max-w-md"
+      >
+        <h2 class="text-3xl font-bold text-center mb-6">Add New Note</h2>
+        <form action="/notes/addNotes" method="post" class="flex flex-col gap-5">
+          <div>
+            <label for="title" class="block mb-1 text-gray-300">Title</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              required
+              placeholder="Enter note title"
+              class="w-full px-3 py-2 bg-zinc-800 border border-gray-700 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label for="content" class="block mb-1 text-gray-300"
+              >Content</label
+            >
+            <textarea
+              id="content"
+              name="content"
+              rows="5"
+              required
+              placeholder="Write your note here..."
+              class="w-full px-3 py-2 bg-zinc-800 border border-gray-700 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg transition"
+          >
+            Save Note
+          </button>
+        </form>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="h-14 flex items-center justify-center border-t border-gray-800 text-gray-400 text-sm"
+    >
+      © <%= new Date().getFullYear() %> NotesApp. All rights reserved.
+    </footer>
+  </body>
+</html>

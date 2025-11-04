@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Notes | Notes App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-zinc-950 text-white flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <nav
+      class="h-16 flex justify-between items-center px-10 border-b border-gray-800 bg-zinc-900/60 backdrop-blur-sm"
+    >
+      <a class="text-2xl font-bold cursor-pointer" href="/">📝 NotesApp</a>
+
+      <div class="flex gap-4">
+        <a
+          href="/notes/addNotes"
+          class="border border-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition"
+          >Add Note</a
+        >
+        <a
+          href="/auth/logout"
+          class="border border-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-black transition"
+          >Logout</a
+        >
+      </div>
+    </nav>
+
+    <!-- Notes Grid -->
+    <main class="flex-1 px-4 sm:px-10 py-8">
+      <h2 class="text-3xl font-bold mb-6 text-center">
+        Hello, <%= user.fullName %> 👋 — Your Notes
+      </h2>
+
+      <% if (user.notes.length > 0) { %>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      >
+        <% user.notes.forEach(note => { %>
+        <div
+          class="bg-zinc-900 border border-gray-700 rounded-2xl shadow-md p-5 hover:shadow-lg transition relative flex flex-col justify-between"
+        >
+          <div>
+            <h3 class="text-xl font-semibold mb-2"><%= note.title %></h3>
+            <p class="text-gray-300 mb-3 break-words"><%= note.content %></p>
+          </div>
+
+          <div class="flex justify-between items-center mt-2">
+            <span class="text-sm text-gray-500">
+              <%= new Date(note.createdAt).toLocaleDateString() %>
+            </span>
+            <div class="flex gap-2">
+              <a
+                href="/notes/editNote/<%= note._id %>"
+                class="text-blue-400 hover:text-blue-600 transition"
+                >Edit</a
+              >
+              <form action="/notes/deleteNote/<%= note._id %>" method="post">
+                <button
+                  type="submit"
+                  class="text-red-400 hover:text-red-600 transition"
+                >
+                  Delete
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <p class="text-gray-400 text-center mt-20 text-lg">
+        You haven't saved any notes yet. 📝
+      </p>
+      <% } %>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="h-14 flex items-center justify-center border-t border-gray-800 text-gray-400 text-sm"
+    >
+      © <%= new Date().getFullYear() %> NotesApp. All rights reserved.
+    </footer>
+  </body>
+</html>
